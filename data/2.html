@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms Tutorial</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a9bd5 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .section-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .task-title {
+            color: #764ba2;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-reset {
+            background: #6c757d;
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 10px 15px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        textarea.form-control {
+            resize: vertical;
+        }
+
+        /* CSS-only validation feedback */
+        .form-control:valid, .form-select:valid {
+            border-color: #198754;
+        }
+        .form-control:invalid:not(:placeholder-shown), 
+        .form-select:invalid:not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+        
+        /* Show validation messages with CSS */
+        .validation-group {
+            position: relative;
+        }
+        .valid-feedback, .invalid-feedback {
+            display: none;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .valid-feedback {
+            color: #198754;
+        }
+        .invalid-feedback {
+            color: #dc3545;
+        }
+        
+        .form-control:valid:not(:placeholder-shown) ~ .valid-feedback {
+            display: block;
+        }
+        .form-control:invalid:not(:placeholder-shown) ~ .invalid-feedback {
+            display: block;
+        }
+        .form-select:valid ~ .valid-feedback {
+            display: block;
+        }
+        .form-select:invalid ~ .invalid-feedback {
+            display: block;
+        }
+
+        /* Password matching - pure CSS can't do this perfectly, but we style it */
+        input[type="password"]:valid {
+            border-color: #198754;
+        }
+        input[type="password"]:invalid:not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-white mb-5">HTML Forms Tutorial</h1>
+
+        <!-- PART 1: BASIC HTML FORMS -->
+        <div class="section-card">
+            <h2 class="section-title">Part 1: Basic HTML Forms</h2>
+            
+            <!-- Task 0: Simple Contact Form -->
+            <h3 class="task-title">Task 0: Simple Contact Form</h3>
+            <form id="basicForm">
+                <div style="margin-bottom: 15px;">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                </div>
+                
+                <button type="submit" style="background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </form>
+
+            <!-- Task 1: Form with HTML5 Validation -->
+            <h3 class="task-title">Task 1: Form with HTML5 Validation</h3>
+            <form id="validatedForm">
+                <div style="margin-bottom: 15px;">
+                    <label for="name2">Name:</label><br>
+                    <input type="text" id="name2" name="name" required maxlength="50" placeholder=" " style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                    <small style="color: #666;">Required (max 50 characters)</small>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="email2">Email:</label><br>
+                    <input type="email" id="email2" name="email" required placeholder=" " style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                    <small style="color: #666;">Required (must be valid email format)</small>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="message2">Message:</label><br>
+                    <textarea id="message2" name="message" rows="4" required minlength="10" maxlength="500" placeholder=" " style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                    <small style="color: #666;">Required (10-500 characters)</small>
+                </div>
+                
+                <button type="submit" style="background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </form>
+        </div>
+
+        <!-- PART 2: BOOTSTRAP FORMS -->
+        <div class="section-card">
+            <h2 class="section-title">Part 2: Bootstrap Forms</h2>
+            
+            <!-- Task 2: Bootstrap Form Styling -->
+            <h3 class="task-title">Task 2: Bootstrap Form Styling</h3>
+            <form id="bootstrapForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="bsName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="bsName" placeholder="Enter your name">
+                        <div class="form-text">We'll never share your personal information.</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="bsEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="bsEmail" placeholder="name@example.com">
+                        <div class="form-text">Enter a valid email address.</div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="bsMessage" class="form-label">Message</label>
+                    <textarea class="form-control" id="bsMessage" rows="4" placeholder="Your message here..."></textarea>
+                    <div class="form-text">Tell us what's on your mind.</div>
+                </div>
+                
+                <button type="submit" class="btn-submit">Submit Form</button>
+            </form>
+
+            <!-- Task 3: Bootstrap Validation Styles -->
+            <h3 class="task-title">Task 3: Bootstrap Validation Styles</h3>
+            <form id="bootstrapValidationForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3 validation-group">
+                        <label for="bsValName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="bsValName" required placeholder=" ">
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please provide your name (letters only).</div>
+                    </div>
+                    <div class="col-md-6 mb-3 validation-group">
+                        <label for="bsValEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="bsValEmail" required placeholder=" ">
+                        <div class="valid-feedback">Email format is correct!</div>
+                        <div class="invalid-feedback">Please provide a valid email.</div>
+                    </div>
+                </div>
+                
+                <div class="mb-3 validation-group">
+                    <label for="bsValMessage" class="form-label">Message</label>
+                    <textarea class="form-control" id="bsValMessage" rows="4" required minlength="10" placeholder=" "></textarea>
+                    <div class="valid-feedback">Great message!</div>
+                    <div class="invalid-feedback">Message must be at least 10 characters.</div>
+                </div>
+                
+                <button type="submit" class="btn-submit">Submit with Validation</button>
+            </form>
+        </div>
+
+        <!-- PART 3: ADVANCED FORM PROJECT -->
+        <div class="section-card">
+            <h2 class="section-title">Part 3: Advanced Form Project</h2>
+            
+            <!-- Task 4: Registration Form -->
+            <h3 class="task-title">Task 4: Registration Form</h3>
+            <form id="registrationForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3 validation-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required placeholder=" ">
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">First name is required (letters only).</div>
+                    </div>
+                    <div class="col-md-6 mb-3 validation-group">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required placeholder=" ">
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Last name is required (letters only).</div>
+                    </div>
+                </div>
+
+                <div class="mb-3 validation-group">
+                    <label for="regEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="regEmail" name="email" required placeholder=" ">
+                    <div class="valid-feedback">Email looks good!</div>
+                    <div class="invalid-feedback">Please provide a valid email.</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3 validation-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required minlength="8" placeholder=" ">
+                        <div class="valid-feedback">Strong password!</div>
+                        <div class="invalid-feedback">Password must be at least 8 characters.</div>
+                    </div>
+                    <div class="col-md-6 mb-3 validation-group">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required minlength="8" placeholder=" ">
+                        <div class="valid-feedback">Passwords match!</div>
+                        <div class="invalid-feedback">Passwords must match.</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label d-block">Gender</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="other" value="other">
+                        <label class="form-check-label" for="other">Other</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label d-block">Hobbies</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="reading" name="hobbies" value="reading">
+                        <label class="form-check-label" for="reading">Reading</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sports" name="hobbies" value="sports">
+                        <label class="form-check-label" for="sports">Sports</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="music" name="hobbies" value="music">
+                        <label class="form-check-label" for="music">Music</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="travel" name="hobbies" value="travel">
+                        <label class="form-check-label" for="travel">Travel</label>
+                    </div>
+                </div>
+
+                <div class="mb-3 validation-group">
+                    <label for="country" class="form-label">Country</label>
+                    <select class="form-select" id="country" name="country" required>
+                        <option value="">Choose...</option>
+                        <option value="us">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="ca">Canada</option>
+                        <option value="au">Australia</option>
+                        <option value="de">Germany</option>
+                        <option value="fr">France</option>
+                        <option value="jp">Japan</option>
+                        <option value="kz">Kazakhstan</option>
+                    </select>
+                    <div class="valid-feedback">Great choice!</div>
+                    <div class="invalid-feedback">Please select a country.</div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn-submit">Submit Registration</button>
+                    <button type="reset" class="btn-reset">Reset Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Validation for Task 3 - Name should only contain letters and spaces
+        document.addEventListener('DOMContentLoaded', function() {
+            const bsValName = document.getElementById('bsValName');
+            
+            if (bsValName) {
+                bsValName.addEventListener('input', function() {
+                    const namePattern = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
+                    if (this.value && !namePattern.test(this.value)) {
+                        this.setCustomValidity('Name should only contain letters');
+                    } else if (this.value.length === 0) {
+                        this.setCustomValidity('Please provide your name');
+                    } else {
+                        this.setCustomValidity('');
+                    }
+                });
+            }
+
+            // Validation for Task 4 - First and Last names
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            
+            function validateNameField(field) {
+                const namePattern = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
+                if (field.value && !namePattern.test(field.value)) {
+                    field.setCustomValidity('Name should only contain letters');
+                } else if (field.value.length === 0) {
+                    field.setCustomValidity('This field is required');
+                } else {
+                    field.setCustomValidity('');
+                }
+            }
+
+            if (firstName) {
+                firstName.addEventListener('input', function() {
+                    validateNameField(this);
+                });
+            }
+
+            if (lastName) {
+                lastName.addEventListener('input', function() {
+                    validateNameField(this);
+                });
+            }
+
+            // Password confirmation validation
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+
+            function validatePasswordMatch() {
+                if (confirmPassword.value === '') {
+                    confirmPassword.setCustomValidity('Please confirm your password');
+                } else if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('Passwords do not match');
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+
+            if (password && confirmPassword) {
+                password.addEventListener('input', validatePasswordMatch);
+                confirmPassword.addEventListener('input', validatePasswordMatch);
+            }
+        });
+    </script>
+</body>
+</html>
